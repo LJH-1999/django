@@ -1,19 +1,19 @@
 class AcGameMenu {
     constructor(root) {
         this.root = root;
-        this.$menu = $`(
+        this.$menu = $(`
 <div class="ac-game-menu">
     <div class="ac-game-menu-field">
         <div class="ac-game-menu-field-item ac-game-menu-field-item-single-mode">
-            Single
+            单人模式
         </div>
         <br>
         <div class="ac-game-menu-field-item ac-game-menu-field-item-multi-mode">
-            Multi
+            多人模式
         </div>
         <br>
         <div class="ac-game-menu-field-item ac-game-menu-field-item-settings">
-            Settings
+            设置
         </div>
     </div>
 </div>
@@ -33,7 +33,7 @@ class AcGameMenu {
 
     add_listening_events() {
         let outer = this;
-        this.$single.click(function(){
+        this.$single_mode.click(function(){
             outer.hide();
             outer.root.playground.show("single mode");
 
