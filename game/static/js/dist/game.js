@@ -5,15 +5,15 @@ class AcGameMenu {
 <div class="ac-game-menu">
     <div class="ac-game-menu-field">
         <div class="ac-game-menu-field-item ac-game-menu-field-item-single-mode">
-            Single
+            单人模式
         </div>
         <br>
         <div class="ac-game-menu-field-item ac-game-menu-field-item-multi-mode">
-            Multi
+            多人模式
         </div>
         <br>
         <div class="ac-game-menu-field-item ac-game-menu-field-item-settings">
-            Settings
+            设置
         </div>
     </div>
 </div>
@@ -80,7 +80,7 @@ class AcGamePlayground {
 
 
 }
-class AcGame {
+export class AcGame {
     constructor(id) {
         this.id = id;
         this.$ac_game = $('#' + id);
