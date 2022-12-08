@@ -113,7 +113,7 @@ class Player extends AcGameObject {
     update() {
         this.spent_time += this.timedelta / 1000;
         if (this.spent_time > 5 && Math.random() < 1 / 300.0) {
-            let player = this.playground.players[0];
+            let player = this.playground.players[Math.floor(Math.random() * this.playground.players.length)];
             this.shoot_fireball(player.x, player.y);
         }
 

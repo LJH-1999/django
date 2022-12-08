@@ -31,6 +31,7 @@ class FireBall extends AcGameObject {
         this.y += this.vy * moved;
         this.move_length -= moved;
 
+
         for (let i = 0; i < this.playground.players.length; i ++) {
             let player = this.playground.players[i];
             if (this.player !== player && this.is_collision(player)) {
