@@ -14,6 +14,9 @@ class Player extends AcGameObject {
         this.is_me = is_me;
         this.eps = 0.1;
 
+        this.cur_skill = null;
+
+
     }
 
     start() {
@@ -22,7 +25,7 @@ class Player extends AcGameObject {
         }
     }
 
-    add_listening_events() {
+    add_listening_events() {//监听事件，鼠标点击，按键盘
         let outer = this;
         this.playground.game_map.$canvas.on("contextmenu", function(){ //取消右键的菜单
             return false;
@@ -31,9 +34,34 @@ class Player extends AcGameObject {
             if (e.which === 3) {
                 outer.move_to(e.clientX, e.clientY);
 
+            } else if(e.which === 1) {//点的是鼠标左键的话
+                if (outer.cur_skill === "fireball") {//如果当前技能是火球的话
+                    outer.shoot_fireball(e.clientX, e.clientY);//朝tx,ty坐标发火球
+                }
+                outer.cur_skill = null;//左键点完发完火球之后，这个状态清空
             }
 
         });
+
+        $(window).keydown(function(e) {//获取键盘信息
+            if (e.which === 81) {//百度keycode,js键盘按钮81代表q键
+                outer.cur_skill = "fireball";
+
+                return false;//代表后续不处理了
+            }
+
+        });
+    }
+    shoot_fireball(tx, ty) {
+        let x = this.x;
+        let y = this.y;
+        let radius = this.playground.height * 0.01;
+        let angle = Math.atan2(ty - this.y, tx - this.x);
+        let vx = Math.cos(angle), vy = Math.sin(angle);
+        let color = "orange";
+        let speed = this.playground.height * 0.5;
+        let move_length = this.playground.height * 1.5;
+        new FireBall(this.playground, this, x, y, radius, vx, vy, color, speed, move_length);
     }
 
     get_dist(x1, y1, x2, y2) {
